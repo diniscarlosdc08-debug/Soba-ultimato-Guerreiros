@@ -1,0 +1,20 @@
+# Ficheiros temporários do sistema
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Editores e ficheiros temporários
+*.tmp
+*.bak
+*.swp
+*.log
+
+# Segredos e configurações locais
+.env
+.env.*
+!.env.example
+
+# Pastas de compilação e cache comuns
+.cache/
+temp/
+tmp/
