@@ -43,3 +43,24 @@ O resultado esperado é `EBOOT.PBP`. A saída só deve ser considerada funcional
 5. Otimizar e integrar os recursos artísticos e sonoros.
 
 **Nota:** neste momento ainda não existem modelos 3D, animações de combate, cenários completos nem uma ISO pronta. Não renomeies simplesmente o `EBOOT.PBP` para `.iso`; são formatos diferentes.
+
+
+## Nova versão: seleção e combate inicial
+
+O protótipo inclui agora:
+- seleção entre Kapanji, Baraka e Jabari;
+- arena de treino em modo texto;
+- movimento horizontal;
+- ataque normal e poder especial;
+- energia, barras de vida e adversário com comportamento simples;
+- ecrã de vitória/derrota e opção para recomeçar.
+
+### Controlos no PPSSPP
+- **Cima/Baixo:** escolher guerreiro no menu.
+- **X:** iniciar combate / ataque normal.
+- **Esquerda/Direita:** mover na arena.
+- **O (Círculo):** poder especial (gasta 40% de energia).
+- **Triângulo:** recuar.
+- **START:** regressar ao menu; no menu, sair.
+
+Esta é uma primeira mecânica de combate e ainda usa uma interface de texto. O próximo marco é validar a compilação e os controlos no PPSSPP antes de começar a integração de gráficos e animações.
