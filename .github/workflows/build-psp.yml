@@ -12,21 +12,31 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: pspdev/pspdev:latest
-    env:
-      PSPDEV: /opt/pspdev
-      PSPSDK: /opt/pspdev/psp/sdk
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: Verify PSPSDK installation
+      - name: Configure and verify PSPSDK
+        shell: bash
         run: |
-          echo "PSPDEV=$PSPDEV"
-          echo "PSPSDK=$PSPSDK"
-          test -f "$PSPSDK/lib/build.mak"
+          set -euxo pipefail
+          if [ -d /opt/pspdev/psp/sdk ]; then
+            echo "PSPDEV=/opt/pspdev" >> "$GITHUB_ENV"
+            echo "PSPSDK=/opt/pspdev/psp/sdk" >> "$GITHUB_ENV"
+          elif [ -d /usr/local/pspdev/psp/sdk ]; then
+            echo "PSPDEV=/usr/local/pspdev" >> "$GITHUB_ENV"
+            echo "PSPSDK=/usr/local/pspdev/psp/sdk" >> "$GITHUB_ENV"
+          else
+            echo "Não foi encontrado o PSPSDK nos caminhos habituais."
+            find / -path '*/lib/build.mak' -print 2>/dev/null | head -20
+            exit 1
+          fi
 
       - name: Compile EBOOT.PBP
+        shell: bash
         run: |
+          set -euxo pipefail
+          test -f "$PSPSDK/lib/build.mak"
           make clean || true
           make
 
