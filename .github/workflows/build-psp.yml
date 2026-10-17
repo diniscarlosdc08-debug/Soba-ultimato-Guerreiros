@@ -12,9 +12,18 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: pspdev/pspdev:latest
+    env:
+      PSPDEV: /opt/pspdev
+      PSPSDK: /opt/pspdev/psp/sdk
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Verify PSPSDK installation
+        run: |
+          echo "PSPDEV=$PSPDEV"
+          echo "PSPSDK=$PSPSDK"
+          test -f "$PSPSDK/lib/build.mak"
 
       - name: Compile EBOOT.PBP
         run: |
