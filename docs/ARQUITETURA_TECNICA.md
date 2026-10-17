@@ -32,3 +32,21 @@ O primeiro objetivo é `EBOOT.PBP`, formato comum de aplicações homebrew PSP. 
 ## Limitações atuais
 
 Este scaffold não inclui ainda modelos 3D, animações de luta, cenários completos, música ou sistema de combate. A compilação automática também precisa de ser executada e validada antes de se afirmar que o executável funciona.
+
+
+## Marco 2 — protótipo de combate
+
+O ficheiro `src/main.c` implementa uma máquina de estados simples:
+- `STATE_MENU`: seleção de personagem;
+- `STATE_FIGHT`: movimento, ataques, energia especial e adversário básico;
+- `STATE_RESULT`: vitória/derrota e repetição.
+
+O combate é deliberadamente simples e apresentado em texto para validar a lógica e os botões no hardware/emulador antes de investir em sprites, modelos, animações ou cenários finais.
+
+### Testes manuais
+1. Confirmar que os três lutadores aparecem no menu.
+2. Escolher cada lutador com Cima/Baixo e iniciar com X.
+3. Mover-se com Esquerda/Direita e aproximar-se do adversário.
+4. Testar X para ataque e Círculo para especial.
+5. Confirmar que as barras de vida mudam e que surge vitória/derrota.
+6. Testar START para regressar ao menu.
